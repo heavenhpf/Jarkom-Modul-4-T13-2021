@@ -250,6 +250,319 @@ Untuk memperoleh pembagian IP yang sesuai, langkah selanjutnya adalah kita perlu
 ![image]()
 
 ### Routing
+Pertama, membuat topologi sesuai dengan diminta soal. Pada GNS3 setiap router diberi switch.
+![image](https://user-images.githubusercontent.com/73151823/143685855-13f17f5d-a5b0-4aa5-8f58-5d56a61ea080.png)
+
+Setting IP sesuai tree yang dibuat untuk setiap node. Bisa dilakukan lewat **etc/network/interfaces** atau **Klik kanan node > Configure > Edit network configuration**. Kemudian dapat menambah interface baru, dengan address, netmask, dan gateway (jika ada) sesuai dengan tree yang sudah dibuat.
+<br>
+Untuk menambah routing pada router, bisa menggunakan dua perintah ini:
+- ```post-up route add -net <NID> netmask <NETMASK> gw <GATEWAY>``` Untuk menambah static route setiap interface dinyalakan
+- ```post-down route del -net <NID> netmask <NETMASK> gw <GATEWAY>``` Untuk menghapus static route setiap interface dimatikan
+<br>perintah tersebut diletakkan di bawah baris interface yang menghubungkannya agar lebih mudah
+
+<br>
+Berikut konfigurasi untuk setiap node:
+
+#### FOOSHA
+```
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet static
+address 10.49.0.1
+netmask 255.255.252.0
+post-up route add -net 10.49.0.0 netmask 255.255.252.0 gw 10.49.0.2
+post-down route del -net 10.49.0.0 netmask 255.255.252.0 gw 10.49.0.2
+post-up route add -net 10.48.32.0 netmask 255.255.255.252 gw 10.49.0.2
+post-down route del -net 10.48.32.0 netmask 255.255.255.252 gw 10.49.0.2
+
+
+auto eth2
+iface eth2 inet static
+address 10.48.128.1
+netmask 255.255.255.252
+post-up route add -net 10.48.128.0 netmask 255.255.255.252 gw 10.48.128.2
+post-down route del -net 10.48.128.0 netmask 255.255.255.252 gw 10.48.128.2
+post-up route add -net 10.48.64.0 netmask 255.255.252.0 gw 10.48.128.2
+post-down route del -net 10.48.64.0 netmask 255.255.252.0 gw 10.48.128.2
+post-up route add -net 10.48.32.0 netmask 255.255.255.252 gw 10.48.128.2
+post-down route del -net 10.48.32.0 netmask 255.255.255.252 gw 10.48.128.2
+post-up route add -net 10.48.16.0 netmask 255.255.255.128 gw 10.48.128.2
+post-down route del -net 10.48.16.0 netmask 255.255.255.128 gw 10.48.128.2
+post-up route add -net 10.48.0.0 netmask 255.255.248.0 gw 10.48.128.2
+post-down route del -net 10.48.0.0 netmask 255.255.248.0 gw 10.48.128.2
+
+auto eth3
+iface eth3 inet static
+address 10.51.0.1
+netmask 255.255.255.252
+
+auto eth4
+iface eth4 inet static
+address 10.50.128.1
+netmask 255.255.255.252
+post-up route add -net 10.50.32.0 netmask 255.255.252.0 gw 10.50.128.2
+post-down route del -net 10.50.32.0 netmask 255.255.252.0 gw 10.50.128.2
+post-up route add -net 10.50.64.0 netmask 255.255.254.0 gw 10.50.128.2
+post-down route del -net 10.50.64.0 netmask 255.255.254.0 gw 10.50.128.2
+post-up route add -net 10.50.96.0 netmask 255.255.255.240 gw 10.50.128.2
+post-down route del -net 10.50.96.0 netmask 255.255.255.240 gw 10.50.128.2
+post-up route add -net 10.50.8.0 netmask 255.255.255.252 gw 10.50.128.2
+post-down route del -net 10.50.8.0 netmask 255.255.255.252 gw 10.50.128.2
+post-up route add -net 10.50.4.0 netmask 255.255.255.0 gw 10.50.128.2
+post-down route del -net 10.50.4.0 netmask 255.255.255.0 gw 10.50.128.2
+post-up route add -net 10.50.0.0 netmask 255.255.252.0 gw 10.50.128.2
+post-down route del -net 10.50.0.0 netmask 255.255.252.0 gw 10.50.128.2
+post-up route add -net 10.50.16.0 netmask 255.255.255.252 gw 10.50.128.2
+post-down route del -net 10.50.16.0 netmask 255.255.255.252 gw 10.50.128.2
+```
+
+#### BLUENO (1000 Host)
+```auto eth0
+iface eth0 inet static
+address 10.49.0.2
+netmask 255.255.252.0
+gateway 10.49.0.1
+```
+
+#### DORIKI
+```
+auto eth0
+iface eth0 inet static
+address 10.51.0.2
+netmask 255.255.255.252
+gateway 10.51.0.1
+```
+
+#### WATER7
+```
+auto eth0
+iface eth0 inet static
+address 10.48.128.2
+netmask 255.255.255.252
+gateway 10.48.128.1
+post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.48.128.1
+post-down route del -net 0.0.0.0 netmask 0.0.0.0 gw 10.48.128.1
+
+auto eth1
+iface eth1 inet static
+address 10.48.64.1
+netmask 255.255.252.0
+
+auto eth2
+iface eth2 inet static
+address 10.48.32.1
+netmask 255.255.255.252
+post-up route add -net 10.48.16.0 netmask 255.255.255.128 gw 10.48.32.2
+post-down route del -net 10.48.16.0 netmask 255.255.255.128 gw 10.48.32.2
+post-up route add -net 10.48.0.0 netmask 255.255.248.0 gw 10.48.32.2
+post-down route del -net 10.48.0.0 netmask 255.255.248.0 gw 10.48.32.2
+```
+
+#### CIPHER (700 Host)
+```
+auto eth0
+iface eth0 inet static
+address 10.48.64.2
+netmask 255.255.252.0
+gateway 10.48.64.1
+```
+
+#### PUCCI
+```
+auto eth0
+iface eth0 inet static
+address 10.48.32.2
+netmask 255.255.255.252
+gateway 10.48.32.1
+post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.48.32.1
+post-down route del -net 0.0.0.0 netmask 0.0.0.0 gw 10.48.32.1
+
+auto eth1
+iface eth1 inet static
+address 10.48.0.1
+netmask 255.255.248.0
+
+auto eth2
+iface eth2 inet static
+address 10.48.16.1
+netmask 255.255.255.128
+
+```
+#### JIPANGU (100 Host)
+```
+auto eth0
+iface eth0 inet static
+address 10.48.16.2
+netmask 255.255.255.128
+gateway 10.48.16.1
+```
+
+#### CALMBELT (1000 Host)
+```
+auto eth0
+iface eth0 inet static
+address 10.48.0.3
+netmask 255.255.248.0
+gateway 10.48.0.1
+```
+
+#### COURTYARD (1020 Host)
+```
+auto eth0
+iface eth0 inet static
+address 10.48.0.2
+netmask 255.255.248.0
+gateway 10.48.0.1
+```
+
+#### GUANHAO
+```
+auto eth0
+iface eth0 inet static
+address 10.50.128.2
+netmask 255.255.255.252
+gateway 10.50.128.1
+
+auto eth1
+iface eth1 inet static
+address 10.50.32.1
+netmask 255.255.252.0
+
+auto eth2
+iface eth2 inet static
+address 10.50.64.1
+netmask 255.255.254.0
+post-up route add -net 10.50.96.0 netmask 255.255.255.240 gw 10.50.64.3
+post-down route del -net 10.50.96.0 netmask 255.255.255.240 gw 10.50.64.3
+
+auto eth3
+iface eth3 inet static
+address 10.50.16.1
+netmask 255.255.255.252
+post-up route add -net 10.50.8.0 netmask 255.255.255.252 gw 10.50.16.2
+post-down route del -net 10.50.8.0 netmask 255.255.255.252 gw 10.50.16.2
+post-up route add -net 10.50.4.0 netmask 255.255.255.0 gw 10.50.16.2
+post-down route del -net 10.50.4.0 netmask 255.255.255.0 gw 10.50.16.2
+post-up route add -net 10.50.0.0 netmask 255.255.252.0 gw 10.50.16.2
+post-down route del -net 10.50.0.0 netmask 255.255.252.0 gw 10.50.16.2
+
+
+post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.50.128.1
+post-down route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.50.128.1
+```
+
+#### JABRA (520 Host)
+```
+auto eth0
+iface eth0 inet static
+address 10.50.32.2
+netmask 255.255.252.0
+gateway 10.50.32.1
+```
+
+#### ALABASTA
+```
+auto eth0
+iface eth0 inet static
+address 10.50.64.3
+netmask 255.255.254.0
+gateway 10.50.64.1
+post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.50.64.1
+post-down route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.50.64.1
+
+auto eth1
+iface eth1 inet static
+address 10.50.96.1
+netmask 255.255.255.240
+```
+
+#### MAINGATE (500 Host)
+```
+auto eth0
+iface eth0 inet static
+address 10.50.64.2
+netmask 255.255.254.0
+gateway 10.50.64.1
+```
+
+#### JORGE (12 Host)
+```
+auto eth0
+iface eth0 inet static
+address 10.50.96.2
+netmask 255.255.255.240
+gateway 10.50.96.1
+```
+
+#### OIMO
+```
+auto eth0
+iface eth0 inet static
+address 10.50.16.2
+netmask 255.255.255.252
+post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.50.16.1
+post-down route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.50.16.1
+
+auto eth2
+iface eth2 inet static
+address 10.50.8.1
+netmask 255.255.255.252
+
+auto eth1
+iface eth1 inet static
+address 10.50.4.1
+netmask 255.255.255.0
+post-up route add -net 10.50.0.0 netmask 255.255.252.0 gw 10.50.4.3
+post-down route del -net 10.50.0.0 netmask 255.255.252.0 gw 10.50.4.3
+
+```
+
+#### FUKUROU
+```
+auto eth0
+iface eth0 inet static
+address 10.50.8.2
+netmask 255.255.255.252
+gateway 10.50.8.1
+```
+
+#### ENIESLOBBY (250 Host)
+```
+auto eth0
+iface eth0 inet static
+address 10.50.4.2
+netmask 255.255.255.0
+gateway 10.50.4.1
+```
+
+#### SEASTONE
+```
+auto eth0
+iface eth0 inet static
+address 10.50.4.3
+netmask 255.255.255.0
+gateway 10.50.4.3
+post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.50.4.1
+post-down route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.50.4.1
+
+auto eth1
+iface eth1 inet static
+address 10.50.0.1
+netmask 255.255.252.0
+```
+
+#### ELENA (720 Host)
+```
+auto eth0
+iface eth0 inet static
+address 10.50.0.2
+netmask 255.255.252.0
+gateway 10.50.0.1
+```
+
 
 ## Kesulitan yang dihadapi
 1. Dalam membuat subnetting CIDR agak kebingungan pas udah masuk router FOOSHA, harus digabungkan yang mana dulu
+2. Dalam membuat routing di GNS3 agak kebingungan karena tidak ada GUI yang membantu seperti Cisco Packet Tracer
