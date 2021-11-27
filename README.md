@@ -38,7 +38,53 @@ Untuk membuat tree, berdasarkan tabel subnetting sebelumnya, kami menurunkannya 
 ![image]()
 
 ### Routing
+Untuk VLSM, kami membuat topologinya pada Cisco Packet Tracer. Pertama, buat topologi sesuai dengan soal.
+![image](https://user-images.githubusercontent.com/73151823/143683184-32271052-3510-4adc-8140-96e663d8fcc7.png)
 
+Pengaturan router dibuat sesuai dengan tree, sebagai berikut:
+#### FOOSHA
+- IP pada interface FOOSHA yang mengarah ke BLUENO (1000 Host)
+![image](https://user-images.githubusercontent.com/73151823/143683318-8a2a9fba-3f8d-44da-adb1-873c9c6ca830.png)
+
+- IP pada interface FOOSHA yang mengarah ke DORIKI
+![image](https://user-images.githubusercontent.com/73151823/143683324-0bad07bf-98bf-494b-9917-7bfee85ae1c8.png)
+
+- IP pada interface FOOSHA yang mengarah ke WATER7
+![image](https://user-images.githubusercontent.com/73151823/143683347-0f2339ae-04cb-45fb-accc-4cd44d20cd0f.png)
+
+- IP pada interface FOOSHA yang mengarah ke GUANHAO
+![image](https://user-images.githubusercontent.com/73151823/143683356-5d804b09-6945-4794-870d-e604d40c2669.png)
+
+#### BLUENO (1000 Host)
+- IP pada interface BLUENO yang mengarah ke FOOSHA
+![image](https://user-images.githubusercontent.com/73151823/143683445-142f4c5f-3d77-4ff5-b781-19b98fa75097.png)
+
+#### DORIKI
+- IP pada interface DORIKI yang mengarah ke FOOSHA
+![image](https://user-images.githubusercontent.com/73151823/143683473-f046737b-2d55-45c6-9391-20aee3e487bc.png)
+
+#### WATER7
+- IP pada interface WATER7 yang mengarah ke FOOSHA
+![image](https://user-images.githubusercontent.com/73151823/143683859-53259d78-5415-4411-b4fa-52a59f11ec2c.png)
+
+- IP pada interface WATER7 yang mengarah ke CIPHER (700 Host)
+![image](https://user-images.githubusercontent.com/73151823/143683870-185d7d10-b842-450c-8554-8e8439cca32e.png)
+
+- IP pada interface WATER7 yang mengarah ke FOOSHA (PUCCI)
+![image](https://user-images.githubusercontent.com/73151823/143683883-ec46bfc9-cce0-433f-9f63-e641402ea4df.png)
+
+#### GUANHAO
+- IP pada interface GUANHAO yang mengarah ke FOOSHA
+![image](https://user-images.githubusercontent.com/73151823/143684002-9829c688-9c63-4b7b-b0df-3ce2bec39ade.png)
+
+- IP pada interface GUANHAO yang mengarah ke JABRA (520 Host)
+![image](https://user-images.githubusercontent.com/73151823/143684029-5639965b-1cdd-4993-8fc0-a034c4e94e3a.png)
+
+- IP pada interface GUANHAO yang mengarah ke MAIN GATE (500 Host) dan ALABASTA
+![image](https://user-images.githubusercontent.com/73151823/143684024-344fb038-8127-48d2-8c8c-30c238797512.png)
+
+- IP pada interface GUANHAO yang mengarah ke OIMO
+![image](https://user-images.githubusercontent.com/73151823/143684036-14a7b42c-c4fb-430f-9ae2-34c9c6e96050.png)
 
 ## CIDR
 ### Subnetting
