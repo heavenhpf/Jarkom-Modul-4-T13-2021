@@ -86,6 +86,75 @@ Pengaturan router dibuat sesuai dengan tree, sebagai berikut:
 - IP pada interface GUANHAO yang mengarah ke OIMO
 ![image](https://user-images.githubusercontent.com/73151823/143684036-14a7b42c-c4fb-430f-9ae2-34c9c6e96050.png)
 
+#### PUCCI
+- IP pada interface PUCCI yang mengarah ke WATER7
+![image](https://user-images.githubusercontent.com/73151823/143684405-b5748f65-6164-462e-9a9c-9c8cef33cdc0.png)
+
+- IP pada interface PUCCI yang mengarah ke JIPANGU (100 Host)
+![image](https://user-images.githubusercontent.com/73151823/143684413-60904e0b-5c56-4d53-8b10-a392eb458ea2.png)
+
+- IP pada interface PUCCI yang mengarah ke CALMBELT (1000 Host) dan COURTYARD (1020 Host) 
+![image](https://user-images.githubusercontent.com/73151823/143684418-8e27b453-809b-4b80-ad0a-bba24cc83176.png)
+
+#### CIPHER (700 Host)
+- IP pada interface CIPHER yang mengarah ke WATER7
+![image](https://user-images.githubusercontent.com/73151823/143684305-293db492-aab5-4b01-a675-3cd3b5582a7b.png)
+
+#### CALMBELT (1000 Host)
+- IP pada interface CALMBELT yang mengarah ke PUCCI
+![image](https://user-images.githubusercontent.com/73151823/143684492-94a3b892-69d7-403f-8d48-6d1ed877b757.png)
+
+#### COURTYARD (1020 Host)
+- IP pada interface COURTYARD yang mengarah ke PUCCI
+![image](https://user-images.githubusercontent.com/73151823/143684504-63f3d3ef-29e0-434a-be9f-fa8e584d2dc7.png)
+
+
+#### JIPANGU (100 Host)
+- IP pada interface JIPANGU yang mengarah ke PUCCI
+![image](https://user-images.githubusercontent.com/73151823/143684521-ddf8d536-af9d-454a-80e5-3cafb4f3fdc5.png)
+
+#### JABRA (520 Host)
+- IP pada interface JABRA yang mengarah ke GUANHAO
+![image](https://user-images.githubusercontent.com/73151823/143684729-a57e81c9-732c-4530-b195-2ed71b39168c.png)
+
+
+#### MAINGATE (500 Host)
+- IP pada interface MAINGATE yang mengarah ke GUANHAO
+![image](https://user-images.githubusercontent.com/73151823/143684745-f7472118-7192-4c4e-abf4-542f783dafcf.png)
+
+
+#### ALABASTA
+- IP pada interface ALABASTA yang mengarah ke GUANHAO
+![image](https://user-images.githubusercontent.com/73151823/143684761-9bfc4819-7d60-4ccf-9bdd-8583cfd9da77.png)
+
+- IP pada interface ALABASTA yang mengarah ke JORGE
+![image](https://user-images.githubusercontent.com/73151823/143684770-4ee430b9-8382-40c0-bc7d-86225505d750.png)
+
+#### JORGE (12 Host)
+- IP pada interface JORGE yang mengarah ke ALABASTA
+![image](https://user-images.githubusercontent.com/73151823/143684815-6ec6f7c3-714c-4291-b69d-14b030c3dd88.png)
+
+#### OIMO
+- IP pada interface OIMO yang mengarah ke GUANHAO
+![image](https://user-images.githubusercontent.com/73151823/143684958-d208abb6-0535-4eaf-a649-ab8a1174309c.png)
+
+- IP pada interface OIMO yang mengarah ke FUKUROU
+![image](https://user-images.githubusercontent.com/73151823/143684983-a924d4b1-5616-485a-b70e-35de9e5bd0ee.png)
+
+- IP pada interface OIMO yang mengarah ke ENIESLOBBY dan SEASTONE
+![image](https://user-images.githubusercontent.com/73151823/143684997-1a844795-1dbf-42c5-baaa-ed62b9bca387.png)
+
+#### ENIESLOBBY (250 Host)
+- IP pada interface ENIESLOBBY yang mengarah ke OIMO
+![image](https://user-images.githubusercontent.com/73151823/143685146-9c8ab763-88ac-47f0-b2dd-ed4a578651cc.png)
+
+#### SEASTONE
+- IP pada interface SEASTONE yang mengarah ke OIMO
+![image](https://user-images.githubusercontent.com/73151823/143685100-c75aeb13-88f2-423b-91ad-8f9596600c0d.png)
+
+- IP pada interface SEASTONE yang mengarah ke ELENA
+![image](https://user-images.githubusercontent.com/73151823/143685109-b26e56ea-b50a-49c5-9de6-4e94c1ddb7b1.png)
+
 ## CIDR
 ### Subnetting
 Untuk subnetting pada CIDR ini, dilakukan secara bertahap dari subnet yang terjauh. Berdasarkan subnetting yang dilakukan pada VLSM sebelumnya, urutan subnet yang dilakukan adalah sebagai berikut:
