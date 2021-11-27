@@ -29,16 +29,14 @@ Untuk VLSM, kami melakukan subnetting pada topologi yang diberikan. Total dari s
 
 Kami juga menentukan panjang sekaligus IP yang digunakan dari setiap subnetnya. Kemudian, kami menjumlah total subnet yang kami perlukan tersebut sehinga diperoleh hasil sebagai berikut:
 
-![image](![2](https://user-images.githubusercontent.com/72731522/143688162-412b4ec5-f6b6-46ae-8e92-10fd90476c01.jpg)
-)
+![image!](https://user-images.githubusercontent.com/72731522/143688162-412b4ec5-f6b6-46ae-8e92-10fd90476c01.jpg)
 
 Diperoleh hasilnya 5845 total IP yang digunakan, sehingga length dari parent tree nya adalah /19.
 
 ### Tree
 Untuk membuat tree, berdasarkan tabel subnetting sebelumnya, kami menurunkannya sesuai dengan aturan pembagian subnet dan di sini kami memasukkan penggunaan IP yang terbesar terlebih dahulu di sebelah kanan, dilanjutkan sampai semua subnet yang diminta pada topologi memperoleh bagiannya:
 
-![image](![3](https://user-images.githubusercontent.com/72731522/143688166-e1603ac2-de92-488e-88e6-b932ba5db1c4.jpg)
-)
+![image!](https://user-images.githubusercontent.com/72731522/143688166-e1603ac2-de92-488e-88e6-b932ba5db1c4.jpg)
 
 ### Routing
 Untuk VLSM, kami membuat topologinya pada Cisco Packet Tracer. Pertama, buat topologi sesuai dengan soal.
