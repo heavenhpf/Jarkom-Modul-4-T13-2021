@@ -155,6 +155,58 @@ Pengaturan router dibuat sesuai dengan tree, sebagai berikut:
 - IP pada interface SEASTONE yang mengarah ke ELENA
 ![image](https://user-images.githubusercontent.com/73151823/143685109-b26e56ea-b50a-49c5-9de6-4e94c1ddb7b1.png)
 
+#### ELENA (720 Host)
+- IP pada interface ELENA yang mengarah ke SEASTONE
+![image](https://user-images.githubusercontent.com/73151823/143685221-0901c369-6029-4c3d-8f90-3e797423785b.png)
+
+Lakukan routing pada menu **Config > Routing > Static** pada device router. Isi static routes dengan subnet tujuan yang ingin ditambahkan di dalam route
+
+#### FOOSHA
+```
+10.48.8.0/22 via 10.48.0.6
+10.48.0.128/25 via 10.48.0.6
+10.48.24.0/21 via 10.48.0.6
+10.48.16.0/22 via 10.48.0.14
+10.48.2.0/23 via 10.48.0.14
+10.48.0.32/28 via 10.48.0.14
+10.48.1.0/24 via 10.48.0.14
+10.48.20.0/22 via 10.48.0.14
+10.48.0.20/30 via 10.48.0.14
+10.48.0.16/30 via 10.48.0.14
+```
+
+#### WATER7
+```
+0.0.0.0/0 via 10.48.0.5
+10.48.0.128/25 via 10.48.0.2
+10.48.24.0/21 via 10.48.0.2
+```
+
+#### PUCCI
+```
+0.0.0.0/0 via 10.48.0.1
+```
+
+#### GUANHAO
+```
+0.0.0.0/0 via 10.48.0.13
+10.48.0.32/28 via 10.48.2.3
+10.48.1.0/24 via 10.48.0.18
+10.48.20.0/22 via 10.48.0.18
+10.48.0.20/30 via 10.48.0.18
+```
+
+#### OIMO
+```
+0.0.0.0/0 via 10.48.0.17
+10.48.20.0/22 via 10.48.1.3
+```
+
+#### SEASTONE
+```
+0.0.0.0/0 via 10.48.1.1
+```
+
 ## CIDR
 ### Subnetting
 Untuk subnetting pada CIDR ini, dilakukan secara bertahap dari subnet yang terjauh. Berdasarkan subnetting yang dilakukan pada VLSM sebelumnya, urutan subnet yang dilakukan adalah sebagai berikut:
